@@ -3,18 +3,18 @@ using namespace std;
 
 #define Max 10
 
-struct nodo 
+struct nodo //Estructura Nodo 
 {
   int dato;
   struct nodo *siguiente;
 };
 
-int clave(int tam,int dato)
+int clave(int tam,int dato)//Funcion hash donde se determina la posicion del dato
 {  
-  return dato%tam;
+  return (dato%tam)-1;
 }
 
-void Insertar(struct nodo **tabla,int dato)
+void Insertar(struct nodo **tabla,int dato)//Funcion que inserta los valores en la tabla hash
 {
    struct nodo *nuevo = (struct nodo *) malloc(sizeof(nodo));
    nuevo->dato = dato;
@@ -40,24 +40,25 @@ void mostrar(struct nodo *tabla)//IMPRIMIR LA TABLA
     
     while (actual!=NULL)//MIENTRAS NO SEA EL FINAL DE LA LISTA
     {
-        cout<<actual->dato<<" ";//IMPRIME EL DATO DEL NODO CORRESPONDIENTE
+        cout<<actual->dato<<" --->> ";//IMPRIME EL DATO DEL NODO CORRESPONDIENTE
         actual = actual->siguiente;//AVANZAMOS AL SIGUIENTE NODO
     }
-    cout<<" NULLnn ";
+    cout<<" NULL "<<endl;
 }
 
 
-int datos[Max]={12,23,45,34,44,78,255,66,88,19};
-struct nodo *array[Max];
+int datos[Max]={12,23,45,34,44,78,255,66,88,19}; //Arreglo de Datos
+struct nodo *array[Max];//Arreglo de nodos, que cumple la funcion de Tabla Hash
 
 int main()
 {
   
   for(int i=0;i<Max;i++)
   {
-    Insertar(&array[clave(Max,datos[i])],datos[i]);
+    Insertar(&array[clave(Max,datos[i])],datos[i]); //Insertamos los datos a la tabla Hash
   }
-  for(int i=0;i<Max;i++)
+
+  for(int i=0;i<Max;i++) //Imprimimos toda la Tabla Hash
   {
     cout<<"Nodo "<<i<<" :";
     mostrar(array[i]);
