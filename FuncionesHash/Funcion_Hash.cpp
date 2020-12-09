@@ -15,7 +15,7 @@ int clave(int tam,string nombre)//Funcion hash donde se determina la posicion de
     int x=0;
     for(int i=0;i<nombre.size();i++)
         x+=nombre[i];
-  return (x%tam)-1;
+  return (x%tam);
 }
 
 void Insertar(struct nodo **tabla,string dato)//Funcion que inserta los valores en la tabla hash
@@ -62,6 +62,7 @@ int buscar(string usuario, struct nodo *array[])
             break;
         }
     }
+    actual = actual->siguiente;
     return x;
 }
 
@@ -90,14 +91,16 @@ int main()
     string usuario;
     do
     {
-        cout<<"Deseas buscar algun usuario S/N";
+        cout<<"Deseas buscar algun usuario S/N"<<endl;
         cin>>boton;
         if(boton=='S')
         {
-            cout<<"Ingresa el nombre del usuario";
+            cout<<"Ingresa el nombre del usuario"<<endl;
             cin>>usuario;
-            if(buscar(usuario,array)==1) cout<<"Usuario encontrado en posicion :"<<clave(Max,usuario)<<endl;
-            else cout<<"El usuario no existe"<<endl;
+            if(buscar(usuario,array)==1)
+                 cout<<"Usuario encontrado en posicion :"<<clave(Max,usuario)<<endl;
+            else
+                 cout<<"El usuario no existe"<<endl;
         }
     }while(boton=='S');
 

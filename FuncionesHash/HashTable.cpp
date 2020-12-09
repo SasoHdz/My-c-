@@ -46,6 +46,22 @@ void mostrar(struct nodo *tabla)//IMPRIMIR LA TABLA
     cout<<" NULL "<<endl;
 }
 
+int buscar(int dato, struct nodo *array[])
+{
+    int puntero=clave(Max,dato),x=0;
+    struct nodo *actual=array[puntero];
+    while(actual!=NULL)
+    {
+        if(actual->dato==dato)
+        {
+            x=1;
+            break;
+        }
+        actual = actual->siguiente;
+    }
+    
+    return x;
+}
 
 int datos[Max]={12,23,45,34,44,78,255,66,88,19}; //Arreglo de Datos
 struct nodo *array[Max];//Arreglo de nodos, que cumple la funcion de Tabla Hash
@@ -63,6 +79,23 @@ int main()
     cout<<"Nodo "<<i<<" :";
     mostrar(array[i]);
   }
+
+  char boton;
+  int numero;
+    do
+    {
+        cout<<"Deseas buscar algun numero S/N"<<endl;
+        cin>>boton;
+        if(boton=='S')
+        {
+            cout<<"Ingresa el numero a buscar"<<endl;
+            cin>>numero;
+            if(buscar(numero,array)==1) 
+              cout<<"Dato encontrado en: "<<clave(Max,numero)<<endl;
+            else 
+              cout<<"El dato no existe"<<endl;
+        }
+    }while(boton=='S');
 
     return 0;
 }
