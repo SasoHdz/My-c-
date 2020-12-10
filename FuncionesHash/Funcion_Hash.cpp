@@ -2,7 +2,7 @@
 #include<string>
 using namespace std;
 
-#define Max 10
+#define Max 5
 
 struct nodo //Estructura Nodo 
 {
@@ -61,8 +61,9 @@ int buscar(string usuario, struct nodo *array[])
             x=1;
             break;
         }
+        actual = actual->siguiente;
     }
-    actual = actual->siguiente;
+    
     return x;
 }
 
@@ -91,7 +92,7 @@ int main()
     string usuario;
     do
     {
-        cout<<"Deseas buscar algun usuario S/N"<<endl;
+        cout<<"Deseas buscar algun usuario S/N"<<endl<<endl;
         cin>>boton;
         if(boton=='S')
         {
